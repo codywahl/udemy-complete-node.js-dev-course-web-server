@@ -5,6 +5,8 @@ const forecast = require('../utils/forecast');
 const geocode = require('../utils/geocode');
 
 const app = express();
+const development_port = 3000;
+const port = process.env.PORT || development_port;
 
 // Define paths for Express config
 const public_path = path.join(__dirname, '../public');
@@ -102,9 +104,10 @@ app.get('*', (req, res) => {
     });
 });
 
-const development_port = 3000;
+
+
 const start_server_callback = () => {
-    console.log('ExpressApp: listening on port [' + development_port + '].');
+    console.log('ExpressApp: listening on port [' + port + '].');
 };
 
-app.listen(development_port, start_server_callback);
+app.listen(port, start_server_callback);
