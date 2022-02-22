@@ -3,16 +3,17 @@
 <html>
 
 <head>
-    {{!-- <title>{{title}}</title>
-    <link rel="icon" href="/img/weather.png">
-    <link rel="stylesheet" href="/css/styles.css"> --}}
-
     {{>head}}
 </head>
 
 <body>
     <div class="main-content">
         {{>header}}
+        <div id="about-blurb">
+            <p>This site was create by </p><a href="https://github.com/codywahl">Cody Wahl</a>. It uses data from
+            mapbox.com
+            and weatherstack.com.</p>
+        </div>
         <img id='about-image' src="/img/build-zoom-1.jpg"></img>
     </div>
 
