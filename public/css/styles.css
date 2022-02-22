@@ -14,13 +14,17 @@ body {
     flex-grow: 1;
 }
 
-.main-content p{
+.main-content #about-blurb p{
     display: inline;
 }
 
 .main-content input {
     border: 1px solid #cccccc;
     padding: 8px;
+}
+
+.main-content #weather_form {
+    margin-top: 8px;
 }
 
 .main-content button {

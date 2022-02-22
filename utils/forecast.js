@@ -10,7 +10,7 @@ const weatherStack = {
     myLocationValue: '35.648622814620836, 139.73835069275955',
 };
 
-const forecast = (latitude, longitude, callback, res) => {
+const forecast = (latitude, longitude, callback) => {
     let curl = weatherStack.requestBaseUrl + weatherStack.currentApiEndpoint + urlConstants.queryMarker
         + weatherStack.accessKeyKey + weatherStack.accessKeyValue + urlConstants.nextParam
         + weatherStack.locationQueryKey + latitude + urlConstants.comma + urlConstants.space + longitude;
@@ -20,15 +20,15 @@ const forecast = (latitude, longitude, callback, res) => {
     // and using a default value on the destructured response.body of empty object
     request({ url: curl, json: true }, (error, { body } = {}) => {
         if (error) {
-            callback('There was an error when connecting to weather service.', undefined, res);
+            callback('There was an error when connecting to weather service.', undefined);
         }
         else {
             if (body.error) {
-                callback('Unable to find location!', undefined, res);
+                callback('Unable to find location!', undefined);
             }
             else {
                 //const currentWeather = response.body.current;
-                const { temperature: temp, precip: precipitation } = body.current;
+                const { temperature: temp, precip: precipitation, wind_speed, weather_descriptions, feelslike } = body.current;
 
                 //const location = response.body.location;
                 const { name, region, country, localtime } = body.location;
@@ -37,10 +37,13 @@ const forecast = (latitude, longitude, callback, res) => {
                     location: name + ', ' + region + ', ' + country,
                     localtime,
                     temp,
+                    feelslike,
                     precipitation,
+                    wind_speed,
+                    weather_descriptions,
                 }
 
-                callback(undefined, weatherForecastAtLocation, res);
+                callback(undefined, weatherForecastAtLocation);
             }
         }
     });

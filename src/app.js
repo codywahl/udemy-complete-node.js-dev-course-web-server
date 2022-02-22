@@ -64,13 +64,16 @@ app.get('/weather', (req, res) => {
             return res.send({ error: 'Error retrieving latitude or longitude!' });
         }
 
-        forecast(latitude, longitude, (error, { localtime, location, temp, precipitation } = {}) => {
+        forecast(latitude, longitude, (error, { localtime, location, temp, precipitation, feelslike, wind_speed, weather_descriptions } = {}) => {
             return res.send({
                 error,
                 localtime,
                 location,
                 temp,
-                precipitation
+                precipitation,
+                feelslike,
+                wind_speed,
+                weather_descriptions,
             })
         });
 
